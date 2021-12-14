@@ -1,6 +1,6 @@
 package com.raexample.utils;
 
-import org.jsoup.Connection.*;
+import io.restassured.response.Response;
 import org.slf4j.*;
 import java.util.*;
 
@@ -23,7 +23,7 @@ public class Storage {
     }
 
     public void rememberTheResponse(Response response){
-        this.rememberTheValue("Response" , response);
+        this.rememberTheValue("response" , response);
     }
 
     public String whatIsTheValue(String key){
