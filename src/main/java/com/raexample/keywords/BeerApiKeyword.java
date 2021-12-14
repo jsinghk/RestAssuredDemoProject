@@ -18,7 +18,7 @@ import static com.raexample.utils.JsonSchemaLoader.getJsonSchema;
 import static com.raexample.utils.PropertiesLoader.getProperty;
 import static io.restassured.RestAssured.*;
 
-public class BeerApiKeyword {
+public class BeerApiKeyword extends BaseApiKeyword {
 
     private final String BASE_URI = getProperty("punk.base.uri");
     private final String BASE_PATH = getProperty("punk.base.path");
@@ -37,7 +37,8 @@ public class BeerApiKeyword {
         Response response = given().accept(ContentType.JSON).
                 when().get().
                 then().statusCode(200).extract().response();
-        log.info("Response :\n" + response.asPrettyString());
+        log.info("Writing the Response to Output File");
+        jsonResponseFileWriterInstance.writeJsonToFile(response, className + "-GetAllBeers");
 
         JsonNode responseJson = response.body().as(JsonNode.class);
         Set<ValidationMessage> validationResult = beerSchema.validate(responseJson);
@@ -54,7 +55,7 @@ public class BeerApiKeyword {
         Response response = given().accept(ContentType.JSON).queryParams(queryParamsMap).
                 when().get().
                 then().statusCode(200).extract().response();
-        log.info("Response :\n" + response.asPrettyString());
+        jsonResponseFileWriterInstance.writeJsonToFile(response, className + "-GetBeerWithCondition");
 
         JsonNode responseJson = response.body().as(JsonNode.class);
         Set<ValidationMessage> validationResult = beerSchema.validate(responseJson);

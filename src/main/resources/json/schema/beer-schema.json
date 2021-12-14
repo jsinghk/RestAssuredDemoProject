@@ -1,13 +1,17 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "$id+": "https://punkapi.com/schemas/beer-schema.json",
-  "type": "object",
+  "type": "array",
   "title": "Beer",
   "description": "Details of Beers",
-  "required": [
-    "id",
-    "name",
-    "description",
-    "abv"
+  "items": [
+    {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "description",
+        "abv"
+      ]
+    }
   ]
 }

@@ -17,7 +17,24 @@ public class BeerTest extends BaseTestCase {
     @Test(priority = 2)
     public void getBeersBrewedBeforeDate() {
         Map<String, String> map = new HashMap<>();
-        map.put("first_brewed", "10/2008");
+        map.put("brewed_before", "10/2008");
+        keyword.
+                beerApi().getBeersWithCondition(map);
+    }
+
+    @Test(priority = 3)
+    public void getBeersWithGreaterThanAbv() {
+        Map<String, String> map = new HashMap<>();
+        map.put("abv_gt", "6");
+        keyword.
+                beerApi().getBeersWithCondition(map);
+    }
+
+    @Test(priority = 4)
+    public void validatePagination() {
+        Map<String, String> map = new HashMap<>();
+        map.put("page", "2");
+        map.put("per_page", "5");
         keyword.
                 beerApi().getBeersWithCondition(map);
     }
